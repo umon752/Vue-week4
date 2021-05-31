@@ -1,0 +1,16 @@
+.resMessage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-40%);
+    min-width: 150px;
+    opacity: 0;
+    transition: all linear 300ms;
+    z-index: 1061;
+
+    &.active {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-50%);
+        transition: all linear 300ms;
+    }
+}

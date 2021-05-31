@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/style/css/all.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="container my-5">
+            <div class="row justify-content-center align-items-center ">
+                <div class="col-md-11 col-lg-10 col-xl-9 pb-3">
+                    <div class="d-flex justify-content-between mb-3">
+                        <h1 class="h5 font-weight-normal fw-bold text-light  d-flex align-items-center"><span
+                                class="material-icons">
+                                admin_panel_settings
+                            </span>Admin</h1>
+                        <button
+                            class="btn btn-outline-light btn-sm rounded-pill font-size-md d-inline-flex align-items-center"
+                            @click="openModal('create')">
+                            <span class="material-icons font-size-md">
+                                add
+                            </span>建立產品
+                        </button>
+                    </div>
+                    <div class="adminTable">
+                    <table class="table bg-white shadow-sm">
+                        <thead class="bg-primary-light text-white">
+                            <tr>
+                                <th width="10%">
+                                    分類
+                                </th>
+                                <th>產品名稱</th>
+                                <th width="10%" class="text-end">
+                                    原價
+                                </th>
+                                <th width="10%" class="text-end">
+                                    售價
+                                </th>
+                                <th width="10%" class="text-end">
+                                    星級
+                                </th>
+                                <th width="20%" class="text-center">
+                                    是否啟用
+                                </th>
+                                <th width="20%" class="text-center">
+                                    編輯
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="font-size-md align-middle">
+                            <tr v-for="item in productsData" :key="item.id">
+                                <td>{{item.category}}</td>
+                                <td>{{item.title}}</td>
+                                <td class="text-end">NT$ {{item.origin_price}}</td>
+                                <td class="text-end">NT$ {{item.price}}</td>
+                                <td class="text-end" v-if="!item.evaluation">0 星</td>
+                                <td class="text-end" v-else>{{item.evaluation}} 星</td>
+                                <td class="text-center">
+                                    <span class="text-primary" v-if="item.is_enabled">啟用</span>
+                                    <span class="text-secondary" v-else="item.is_enabled">未啟用</span>
+                                </td>
+                                <td class="text-center">
+                                    <a href="#"
+                                        class="adminBtn material-icons h5 text-primary rounded-circle bg-light mb-0 me-1"
+                                        @click="openModal('edit', item)">
+                                        edit
+                                    </a>
+                                    <a href="#"
+                                        class="adminBtn material-icons h5 text-secondary rounded-circle bg-light mb-0"
+                                        @click="openModal('delete', item)">
+                                        delete
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                    <p class="text-light text-center" v-if="productsData.length === 0">目前尚未有商品</p>
+
+                    <pagination :page="pagination" @get-product="getProductsData"></pagination>
+                </div>
+            </div>
+        </div>
+        <res-message :res-text="resObj.resMessage" :res-is-show="resObj.isShowReaMessage"></res-message>
+        <!-- Modal -->
+        <update-product-modal :modal-obj="modalObj" :product-obj="productObj" @update-product-data="updateProductData"></update-product-modal>
+        <del-product-modal :product-obj="productObj" @del-product-data="delProductData"></del-product-modal>
+        <!-- Modal -->
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.9.1/axios.min.js'
+        integrity='sha512-Xk3wWei2TGrsh9kDSBKUMIjw/86sLUvhtnv9f7fOuIwhhiUTKz8szkWkzHthrM5Bb3Bu9idSzkxOrkzhcneuiw=='
+        crossorigin='anonymous'></script>
+        <script src="./assets/js/vendor/bootstrap.bundle.min.js"></script>
+        <script type="module" src="./assets/js/admin.js"></script>
+</body>
+
+</html>

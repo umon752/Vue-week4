@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/style/css/all.css">
+</head>
+
+<body class="vh-100 position-relative">
+    <div id="app">
+        <div class="container">
+            <div class="row justify-content-center vh-100 align-items-center">
+                <div class="col-md-8 col-lg-6 col-xl-5">
+                    <div class="row bg-white shadow">
+                        <div class="col-md-9 col-xl-8 px-5 py-4">
+                            <h1 class="h5 text-center text-muted fw-bold mb-4">
+                                Sign in
+                            </h1>
+                            <form id="form" class="form-signin mb-4">
+                                <div class="mb-3">
+                                    <label for="username" class="font-size-sm text-muted fw-bold mb-1">Email</label>
+                                    <input type="email"
+                                        class="border-0 border-primary text-secondary border-bottom w-100 p-1"
+                                        id="username" required autofocus v-model="userObj.username">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="password" class="font-size-sm text-muted fw-bold mb-1">Password</label>
+                                    <div class="d-flex border-primary text-secondary border-bottom p-1">
+                                        <input :type="passwordStatus" class="border-0 w-100" id="password" required
+                                            v-model="userObj.password">
+                                        <a href="#" @click="changePasswordStatus">
+                                            <span class="material-icons" v-if="passwordStatus === 'password'">
+                                                visibility_off
+                                            </span>
+                                            <span class="material-icons" v-else>
+                                                visibility
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <button class="btn btn-lg btn-primary btn-sm rounded-pill text-white w-100"
+                                    type="button" @click="signIn">
+                                    Sign in
+                                </button>
+                            </form>
+                            <p class="text-center text-muted font-size-sm">
+                                &copy; 2021~∞ - 六角學院
+                            </p>
+                        </div>
+                        <div class="col position-relative d-none d-md-block px-0">
+                            <div
+                                class="signInMask text-light text-center d-flex flex-column justify-content-between align-items-center px-3 py-5">
+                                <div>
+                                    <h2 class="h5">Register</h2>
+                                    <p class="font-size-sm mb-0">Don’t have an account?<span
+                                            class="text-primary d-block">Signup now</span></p>
+                                </div>
+                                <button type="button"
+                                    class="btn btn-outline-light btn-sm font-size-sm rounded-pill w-75">Sign up</button>
+                            </div>
+                            <div class="signInImg"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <res-message :res-text="resObj.resMessage" :res-is-show="resObj.isShowReaMessage"></res-message>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.9.1/axios.min.js'
+        integrity='sha512-Xk3wWei2TGrsh9kDSBKUMIjw/86sLUvhtnv9f7fOuIwhhiUTKz8szkWkzHthrM5Bb3Bu9idSzkxOrkzhcneuiw=='
+        crossorigin='anonymous'></script>
+    <script src="./assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script type="module" src="./assets/js/signIn.js"></script>
+</body>
+
+</html>
