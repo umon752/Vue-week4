@@ -36,7 +36,7 @@ export default {
                         <div class="mb-2">
                             <div class="form-group mb-2">
                                 <label for="imageUrl" class="text-secondary mb-2">主要圖片</label>
-                                <input type="text"
+                                <input id="imageUrl" type="text"
                                     class="border-0 text-secondary border-bottom border-primary-light bg-light w-100 p-2"
                                     placeholder="請輸入圖片連結" v-model="productObj.imageUrl">
                             </div>
@@ -88,7 +88,7 @@ export default {
                                     placeholder="請輸入分類" v-model.trim="productObj.category">
                             </div>
                             <div class="form-group col-md-6 mb-3">
-                                <label for="price" class="text-secondary mb-2">單位</label>
+                                <label for="unit" class="text-secondary mb-2">單位</label>
                                 <input id="unit" type="text"
                                     class="border-0 text-secondary border-bottom border-primary-light bg-light w-100 p-2"
                                     placeholder="請輸入單位" v-model.trim="productObj.unit">
@@ -114,7 +114,7 @@ export default {
                                 <label for="evaluation" class="text-secondary mb-2">商品評價星級</label>
                                 <input id="evaluation" type="number" min="0" max="5"
                                     class="border-0 text-secondary border-bottom border-primary-light bg-light w-100 p-2"
-                                    placeholder="請輸入售價" v-model.number="productObj.evaluation">
+                                    placeholder="請輸入商品評價星級" v-model.number="productObj.evaluation">
                         </div>
 
                         <div class="form-group mb-3">
@@ -126,7 +126,7 @@ export default {
                         </div>
                         <div class="form-group mb-3">
                             <label for="content" class="text-secondary mb-2">說明內容</label>
-                            <textarea id="description" type="text"
+                            <textarea id="content" type="text"
                                 class="border-0 text-secondary border-bottom border-primary-light bg-light w-100 p-2"
                                 placeholder="請輸入說明內容" v-model.trim="productObj.content">
                             </textarea>

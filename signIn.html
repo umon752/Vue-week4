@@ -20,7 +20,7 @@
                             <h1 class="h5 text-center text-muted fw-bold mb-4">
                                 Sign in
                             </h1>
-                            <form id="form" class="form-signin mb-4">
+                            <form id="form" class="form-signin mb-4" @submit.prevent="signIn">
                                 <div class="mb-3">
                                     <label for="username" class="font-size-sm text-muted fw-bold mb-1">Email</label>
                                     <input type="email"
@@ -43,7 +43,7 @@
                                     </div>
                                 </div>
                                 <button class="btn btn-lg btn-primary btn-sm rounded-pill text-white w-100"
-                                    type="button" @click="signIn">
+                                    type="submit" >
                                     Sign in
                                 </button>
                             </form>

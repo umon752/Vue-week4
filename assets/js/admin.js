@@ -6,16 +6,17 @@ import pagination from './component/pagination.js';
 import updateProductModal from './component/productModal.js';
 import delProductModal from './component/delModal.js';
 
+const url = 'https://vue3-course-api.hexschool.io';
+const path = 'umon752';
 let productModal = {};
 let delModal = {};
 
 const app = createApp({
     data() {
         return {
-            url: 'https://vue3-course-api.hexschool.io',
-            path: 'umon752',
             productsData: [],
             productObj: {
+                evaluation: '',
                 imagesUrl: [],
             },
             modalObj: {
@@ -39,8 +40,8 @@ const app = createApp({
             this.resObj.resMessage = text;
         },
         getProductsData(page = 1) {
-            const url = `${this.url}/api/${this.path}/admin/products?page=${page}`;
-            axios.get(url)
+            const completeUrl = `${url}/api/${path}/admin/products?page=${page}`;
+            axios.get(completeUrl)
                 .then((res) => {
                     if (res.data.success) {
                         // console.log(res.data);
@@ -78,8 +79,8 @@ const app = createApp({
             }
         },
         delProductData(productObj) {
-            const url = `${this.url}/api/${this.path}/admin/product/${productObj.id}`;
-            axios.delete(url)
+            const completeUrl = `${url}/api/${path}/admin/product/${productObj.id}`;
+            axios.delete(completeUrl)
                 .then((res) => {
                     if (res.data.success) {
                         // 顯示訊息
@@ -96,25 +97,23 @@ const app = createApp({
         },
         updateProductData(productObj) {
             // 建立
-            let url;
+            let completeUrl;
             let method;
-            let resFalseText;
+            let resFalseText = '欄位未填完成';
 
             // 編輯
             if (this.modalObj.modalTitle === '編輯') {
-                url = `${this.url}/api/${this.path}/admin/product/${productObj.id}`;
+                completeUrl = `${url}/api/${path}/admin/product/${productObj.id}`;
                 method = 'put';
-                resFalseText = `res.data.message`;
             } else if (this.modalObj.modalTitle === '建立') {
-                url = `${this.url}/api/${this.path}/admin/product`;
+                completeUrl = `${url}/api/${path}/admin/product`;
                 method = 'post';
-                resFalseText = '欄位未填完成';
             }
 
-            axios[method](url, {
+            axios[method](completeUrl, {
                     data: productObj
                 })
-                .then((res, resFalseText) => {
+                .then((res) => {
                     if (res.data.success) {
                         // 顯示訊息
                         this.resMessage(res.data.message);

@@ -1,10 +1,11 @@
 import { createApp } from 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.11/vue.esm-browser.js';
 import resMessage from './component/resMessage.js';
 
+const url = 'https://vue3-course-api.hexschool.io';
+
 const app = createApp({
     data() {
         return {
-            url: 'https://vue3-course-api.hexschool.io',
             userObj: {
                 username: '',
                 password: ''
@@ -37,8 +38,8 @@ const app = createApp({
             }
         },
         signIn() {
-            const url = `${this.url}/admin/signin`;
-            axios.post(url, this.userObj)
+            const completeUrl = `${url}/admin/signin`;
+            axios.post(completeUrl, this.userObj)
                 .then((res) => {
                     if (res.data.success) {
                         // 顯示訊息
